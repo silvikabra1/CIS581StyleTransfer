@@ -37,7 +37,5 @@ class Config:
     GHOST_FRAME_TRANSPARENCY = 0.5 ## fine tune parameter
     KEEP_COLORS = False
 
-    PROMPT = "pointilism"
-
     TENSORFLOW_CACHE_DIRECTORY = f'{ROOT}/tensorflow_cache'
     TENSORFLOW_HUB_HANDLE = 'https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2'
