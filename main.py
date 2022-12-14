@@ -6,7 +6,6 @@ import numpy as np
 import tensorflow_hub as hub
 import tensorflow as tf
 from getpass import getpass
-import os
 import openai
 import requests
 
