@@ -3,7 +3,8 @@ class Config:
     ROOT = '.'
     # defines the maximum height dimension in pixels. Used for down-sampling the video frames
     FRAME_HEIGHT = 360 ## fine tune parameter
-    CLEAR_INPUT_FRAME_CACHE = True
+    
+    CLEAR_INPUT_FRAME_CACHE = False
     
     # defines the rate at which you want to capture frames from the input video
     FPS = 20 ## fine tune parameter
