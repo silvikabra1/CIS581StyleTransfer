@@ -12,5 +12,3 @@ tensorflow-estimator==2.4.0
 tensorflow-hub==0.11.0
 urllib3==1.26.3
 openai==0.25.0
-glob==8.0.3
-getpass==0.1.7
