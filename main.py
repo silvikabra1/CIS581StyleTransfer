@@ -16,7 +16,7 @@ class StyleTransfer:
     def __init__(self, uploaded_file=None, config=Config):
         ## set up config with uploaded video
         self.config = config
-        self.config.INPUT_VIDEO_NAME = list(uploaded_file.keys())[0]
+        self.config.PRE_VID_NAME = list(uploaded_file.keys())[0]
         if uploaded_file is None:
             raise ValueError(f"Error: No video provided")
         
