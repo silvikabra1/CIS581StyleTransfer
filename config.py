@@ -19,9 +19,11 @@ class Config:
     PRE_VID_FRAME_PATH = f'{PRE_VID_FRAME_DIR}/{PRE_VID_FRAME_FILE}'
 
     STYLE_DIR = f'{ROOT}/style_ref'
+    STYLE_IMG_FILE = 'style_{:0>4d}_.png'
+    STYLE_IMG_PATH= f'{STYLE_DIR}/{STYLE_IMG_FILE}'
+
     # defines the reference style image transition sequence. Values correspond to indices in STYLE_REF_DIRECTORY
     # add None in the sequence to NOT apply style transfer for part of the video (ie. [None, 0, 1, 2])  
-    STYLE_SEQ = [0, 1, 2] ## fine tune parameter
 
     # output video variables
     POST_VID_NAME = 'post_video.mp4'
@@ -32,7 +34,7 @@ class Config:
     POST_VID_FRAME_FILE = 'frame_{:0>4d}_.png'
     POST_VID_FRAME_PATH = f'{POST_VID_FRAME_DIR}/{POST_VID_FRAME_FILE}'
 
-    GHOST_FRAME_TRANSPARENCY = 0.1 ## fine tune parameter
+    GHOST_FRAME_TRANSPARENCY = 0.5 ## fine tune parameter
     KEEP_COLORS = False
 
     TENSORFLOW_CACHE_DIRECTORY = f'{ROOT}/tensorflow_cache'
