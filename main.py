@@ -14,8 +14,13 @@ class StyleTransfer:
 
     MAX_CHANNEL_INTENSITY = 255.0
     
-    def __init__(self, config=Config):
+    def __init__(self, uploaded_file=None, config=Config):
+        ## set up config with uploaded video
         self.config = config
+        self.config.INPUT_VIDEO_NAME = list(uploaded_file.keys())[0]
+        if uploaded_file is None:
+            raise ValueError(f"Error: No video provided")
+        
         self.prompt = self.config.PROMPT
         self.hub_module = hub.load(self.config.TENSORFLOW_HUB_HANDLE)
         self.pre_frame_dir = glob.glob(f'{self.config.PRE_VID_FRAME_DIR}/*')
