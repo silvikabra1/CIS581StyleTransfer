@@ -164,7 +164,10 @@ class StyleTransfer:
             inv_blend_ratio = 1 - blend_ratio
 
             prev_style = self.style_ref_imgs[curr_style_img_idx]
-            next_style = self.style_ref_imgs[curr_style_img_idx + 1]
+            if curr_style_img_idx + 1 >= self.num_ref_imgs:
+                next_style = None
+            else:
+                next_style = self.style_ref_imgs[curr_style_img_idx + 1]
 
             # If both are content images, don't need to apply style transfer - TEST out
             if prev_style is None and next_style is None:
