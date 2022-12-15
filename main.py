@@ -34,9 +34,8 @@ class StyleTransfer:
 
         self.style_dir = glob.glob(f'{self.config.STYLE_DIR}/*')
         delete_these_files = self.style_dir
-        if self.config.CLEAR_INPUT_FRAME_CACHE:
-            delete_these_files += self.post_frame_dir
-            delete_these_files += self.pre_frame_dir
+        delete_these_files += self.post_frame_dir
+        delete_these_files += self.pre_frame_dir
 
         for file in delete_these_files:
             os.remove(file)
