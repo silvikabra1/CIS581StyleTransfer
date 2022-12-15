@@ -1,4 +1,5 @@
 from __future__ import print_function
+from torch.nn.modules import LazyInstanceNorm1d
 import torchvision.transforms.functional as TF
 from functools import partial
 
@@ -178,7 +179,7 @@ def run_style_transfer(model, normalization_mean, normalization_std,
                        content_img, style_img, input_img,
                        loss_function='mse', optimizer='LBFGS',
                        num_steps=300,
-                       style_weight=80000, content_weight=8):
+                       style_weight=16000, content_weight=8):
     """Run the style transfer."""
     # print('Building the style transfer model..')
     # print('model: ', model,
@@ -263,14 +264,15 @@ class Styler:
         print("Styler Initialized")
         self.loss = 'l1'
         self.optimizer = 'LBFGS'
-        self.iters = 50
+        self.iters = 300
         self.model = 'vgg'
+        self.last_output = None
 
     def preprocess_images(self, content, style):
 
         content = torch.Tensor(content.numpy()).permute(2, 0, 1)
         content = transforms.Resize(
-            (content.size()[1] // 4, content.size()[2] // 4))(content)
+            (content.size()[1], content.size()[2]))(content)
         style = torch.Tensor(style).permute(2, 0, 1)
         style = transforms.Resize(
             (content.size()[1], content.size()[2]))(style)
@@ -283,9 +285,16 @@ class Styler:
         content_img, style_img = self.preprocess_images(content_img, style_img)
         assert content_img.size() == style_img.size()
 
-        input_img = content_img.clone().contiguous()
-        output, style_out, content_out = run_style_transfer(self.model, cnn_normalization_mean, cnn_normalization_std,
-                                                            content_img, style_img, input_img,
-                                                            self.loss, self.optimizer, self.iters)
-
+        if self.last_output == None:
+            input_img = content_img.clone().contiguous()
+            output, style_out, content_out = run_style_transfer(self.model, cnn_normalization_mean, cnn_normalization_std,
+                                                                content_img, style_img, input_img,
+                                                                self.loss, self.optimizer, (1.5 * self.iters) // 1)
+        else:
+            input_img = (self.last_output.clone() + 2 *
+                         content_img.clone().contiguous()) / 3
+            output, style_out, content_out = run_style_transfer(self.model, cnn_normalization_mean, cnn_normalization_std,
+                                                                content_img, style_img, input_img,
+                                                                self.loss, self.optimizer, self.iters)
+        self.last_output = output
         return output
