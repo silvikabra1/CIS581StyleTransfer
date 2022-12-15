@@ -34,7 +34,7 @@ class Config:
     POST_VID_FRAME_FILE = 'frame_{:0>4d}_.png'
     POST_VID_FRAME_PATH = f'{POST_VID_FRAME_DIR}/{POST_VID_FRAME_FILE}'
 
-    GHOST_FRAME_TRANSPARENCY = 0.5 ## fine tune parameter
+    GHOST_FRAME_TRANSPARENCY = 0.1 ## fine tune parameter
     KEEP_COLORS = False
 
     TENSORFLOW_CACHE_DIRECTORY = f'{ROOT}/tensorflow_cache'
