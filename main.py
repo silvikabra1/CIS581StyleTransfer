@@ -27,6 +27,7 @@ class StyleTransfer:
             raise ValueError(f"Error: No prompt provided")
         self.config = config
         self.config.PRE_VID_NAME = list(uploaded_file.keys())[0]
+        self.config.PRE_VID_PATH = f'{self.config.ROOT}/{self.config.PRE_VID_NAME}'
         self.prompt = prompt
         #self.hub_module = hub.load(self.config.TENSORFLOW_HUB_HANDLE)
         self.hub_module = styletransfer.Styler()
