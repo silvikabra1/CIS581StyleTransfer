@@ -127,6 +127,8 @@ class StyleTransfer:
                 continue
             style_ref_img = cv2.imread(
                 style_ref_img_files[curr_style_img_index])
+            if style_ref_img is None:
+                raise ValueError("OpenCV has experienced an issue. Please run this cell again.")
             style_ref_img = cv2.cvtColor(style_ref_img, cv2.COLOR_BGR2RGB)
             if style_ref_img_1_height is None or style_ref_img_1_width is None:
                 style_ref_img_1_height, style_ref_img_1_width, channels = style_ref_img.shape
