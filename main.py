@@ -8,6 +8,7 @@ import tensorflow as tf
 from getpass import getpass
 import openai
 import requests
+import torch
 
 import styletransfer
 import importlib
@@ -197,7 +198,8 @@ class StyleTransfer:
             # Apply style transfer
             stylized_frame = self.hub_module.apply_style(
                 current_frame, img_to_blend)
-            stylized_frame = tf.squeeze(stylized_frame.detach().numpy())
+            stylized_frame = tf.squeeze(
+                torch.Tensor.cpu(stylized_frame.detach()).numpy())
 
             stylized_frame = tf.transpose(stylized_frame, perm=[1, 2, 0])
             a, b, _ = stylized_frame.get_shape()
