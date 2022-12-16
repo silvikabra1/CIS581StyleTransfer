@@ -1,7 +1,7 @@
 # CIS581StyleTransfer
 
 Instructions to Run:
-1. Open this Google Colab link: https://drive.google.com/file/d/1qwaKdisfYZYMmifKuIRHvRpZNM-07Er9/view?usp=share_link and follow the instructions in the cells. Run through each of them and provide the inputs asked for. If there is an error, restart the runtime and run it again.
+1. Open this Google Colab <a href="https://drive.google.com/file/d/1qwaKdisfYZYMmifKuIRHvRpZNM-07Er9/view?usp=share_link">link </a> and follow the instructions in the cells. Run through each of them and provide the inputs asked for. If there is an error, restart the runtime and run it again.
 
 Implementation Details:
 1. We first use OpenAI to generate style images based on the text that the user input. The order that the user inputs their text is important and determines the order of the styles that the video will have transferred. The user also has the opportunity to include "None" in their inputs if they want the original video to appear for a few frames between the style transferred frames. 
